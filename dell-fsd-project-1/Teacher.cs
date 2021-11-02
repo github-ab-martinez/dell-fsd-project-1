@@ -8,17 +8,20 @@ namespace dell_fsd_project_1
 {
     class Teacher
     {
+        private static int id_Counter = 0;
         public int Id { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Class { get; private set; }
         public string Section { get; private set; }
 
-        public Teacher(int id) { Id = id; }
+        public Teacher() { 
+            Id = System.Threading.Interlocked.Increment(ref id_Counter); 
+        }
 
-        public Teacher(int id, string firstName, string lastName, string className, string section)
+        public Teacher(string firstName, string lastName, string className, string section)
         {
-            Id = id;
+            Id = System.Threading.Interlocked.Increment(ref id_Counter);
             FirstName = firstName;
             LastName = lastName;
             Class = className;
