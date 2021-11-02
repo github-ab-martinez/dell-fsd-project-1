@@ -6,7 +6,12 @@ namespace dell_fsd_project_1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            RunApp();
+        }
+
+        public static void RunApp()
+        {
+            Console.WriteLine("Running application.");
         }
     }
 }
