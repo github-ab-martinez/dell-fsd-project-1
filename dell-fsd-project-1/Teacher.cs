@@ -27,5 +27,12 @@ namespace dell_fsd_project_1
             Class = className;
             Section = section;
         }
+
+        public void PrintTeacher()
+        {
+            Console.WriteLine("  Id  |  First Name  |  Last Name  |  Class  |  Section  ");
+            Console.WriteLine("---------------------------------------------------------");
+            Console.WriteLine("  " + Id + "  |  " + FirstName + "  |  " + LastName + "  |  " + Class + "  |  " + Section + "  ");
+        }
     }
 }
