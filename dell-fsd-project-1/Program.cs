@@ -51,7 +51,7 @@ namespace dell_fsd_project_1
                     }
                     else if (actionName == "update")
                     {
-                        Console.WriteLine("Update action");
+                        UpdateTeacher(teachers);
                     }
                     else if (actionName == "exit")
                     {
@@ -86,6 +86,49 @@ namespace dell_fsd_project_1
 
             if (teacher != null)
             {
+                teacher.PrintTeacher();
+            }
+            else
+            {
+                Console.WriteLine("No teacher found with that Id.");
+            }
+        }
+
+        public static void UpdateTeacher(TeacherList teacherList)
+        {
+            int teacherId;
+            bool validInput;
+
+            do
+            {
+                Console.WriteLine("Please enter the id of the teacher you'd like to update:");
+                string idInput = Console.ReadLine();
+                validInput = int.TryParse(idInput, out teacherId);
+            } while (!validInput);
+
+
+            Teacher teacher = teacherList.GetTeacher(teacherId);
+
+            if (teacher != null)
+            {   
+                Console.WriteLine("Updating the following teacher information:");
+                teacher.PrintTeacher();
+                Console.WriteLine("Enter new info for the following prompts to update the respective field.\nLeave the field empty to keep current information as is.");
+                Console.WriteLine("First Name:");
+                string firstName = Console.ReadLine();
+
+                Console.WriteLine("Last Name:");
+                string lastName = Console.ReadLine();
+
+                Console.WriteLine("Class:");
+                string className = Console.ReadLine();
+
+                Console.WriteLine("Section:");
+                string section = Console.ReadLine();
+
+                teacher.UpdateTeacher(firstName, lastName, className, section);
+
+                Console.WriteLine("Teacher information successfully updated.");
                 teacher.PrintTeacher();
             }
             else

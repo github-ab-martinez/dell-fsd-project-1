@@ -28,6 +28,14 @@ namespace dell_fsd_project_1
             Section = section;
         }
 
+        public void UpdateTeacher(string firstName, string lastName, string className, string section)
+        {
+            FirstName = firstName != "" ? firstName : FirstName;
+            LastName = lastName != "" ? lastName : LastName;
+            Class = className != "" ? className : Class;
+            Section = section != "" ? section : Section;
+        }
+
         public void PrintTeacher()
         {
             Console.WriteLine("  Id  |  First Name  |  Last Name  |  Class  |  Section  ");
