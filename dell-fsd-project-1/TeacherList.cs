@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dell_fsd_project_1
 {
-    class TeacherList
+    public class TeacherList
     {
         public List<Teacher> Teachers { get; set; }
 

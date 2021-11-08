@@ -16,6 +16,14 @@ namespace dell_fsd_project_1
             update,
             exit
         }
+
+        public enum SortTypes
+        {
+            id,
+            firstName,
+            las
+        }
+
         public static void RunApp()
         {
             Teacher classTeacher = new Teacher("Marti", "Martinez", "Class 1", "Section 1");
@@ -30,17 +38,17 @@ namespace dell_fsd_project_1
             }
 
             bool run = true;
+            HashSet<string> validActions = new HashSet<string>() { "list", "search", "update", "exit" };
 
             do
             {
                 Console.WriteLine("Which of the following actions would you like to perform?");
                 Console.WriteLine("List | Search | Update | Exit");
                 string input = Console.ReadLine();
+                string actionName = input.ToString().ToLower();
                 
-                if (System.Enum.TryParse<Actions>(input, true, out Actions action))
+                if (validActions.Contains(actionName))
                 {
-                    string actionName = action.ToString();
-
                     if (actionName == "list")
                     {
                         PrintTeachersList(teachers);
@@ -66,6 +74,36 @@ namespace dell_fsd_project_1
         }
 
         public static void PrintTeachersList(TeacherList teacherList) {
+            bool validInput = false;
+            HashSet<string> validSorts = new HashSet<string>() { "id", "first name", "last name" };
+
+            do
+            {
+                Console.WriteLine("How would you like to sort the list?\nId | First Name | Last Name");
+                string input = Console.ReadLine();
+                string sortType = input.ToString().ToLower();
+
+                if (validSorts.Contains(sortType))
+                {
+                    if (sortType == "id")
+                    {
+                        teacherList.Teachers.Sort();
+                    } else if (sortType == "first name")
+                    {
+                        teacherList.Teachers.Sort(new FirstNameComparer());
+                    }
+                    else if (sortType == "last name")
+                    {
+                        teacherList.Teachers.Sort(new LastNameComparer());
+                    }
+                    validInput = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input.");
+                }
+            } while (!validInput);
+            
             teacherList.PrintList();
         }
 

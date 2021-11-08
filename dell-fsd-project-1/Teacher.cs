@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dell_fsd_project_1
 {
-    class Teacher
+    public class Teacher : IComparable<Teacher>
     {
         private static int id_Counter = 0;
         public int Id { get; private set; }
@@ -41,6 +41,22 @@ namespace dell_fsd_project_1
             Console.WriteLine("  Id  |  First Name  |  Last Name  |  Class  |  Section  ");
             Console.WriteLine("---------------------------------------------------------");
             Console.WriteLine("  " + Id + "  |  " + FirstName + "  |  " + LastName + "  |  " + Class + "  |  " + Section + "  ");
+        }
+
+        //public int SortByFirstName(Teacher compareTeacher)
+        //{
+        //    if (compareTeacher == null)
+        //        return 1;
+        //    else
+        //        return this.FirstName.CompareTo(compareTeacher.FirstName);
+        //}
+
+        public int CompareTo(Teacher compareTeacher)
+        {
+            if (compareTeacher == null)
+                return 1;
+            else
+                return this.Id.CompareTo(compareTeacher.Id);
         }
     }
 }
