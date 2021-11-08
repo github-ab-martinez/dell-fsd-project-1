@@ -6,4 +6,10 @@
     <RootNamespace>dell_fsd_project_1</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="App_Data\teachers.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

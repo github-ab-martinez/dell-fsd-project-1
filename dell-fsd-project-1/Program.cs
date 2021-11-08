@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace dell_fsd_project_1
 {
@@ -32,10 +34,7 @@ namespace dell_fsd_project_1
             TeacherList teachers = new TeacherList();
             teachers.Teachers = new List<Teacher> { classTeacher, classTeacher2 };
 
-            for (int i = 0; i < teachers.Teachers.Count; i++)
-            {
-                Console.WriteLine(teachers.Teachers[i].FirstName);
-            }
+            updateTxtFile(teachers);
 
             bool run = true;
             HashSet<string> validActions = new HashSet<string>() { "list", "search", "update", "exit" };
@@ -168,6 +167,7 @@ namespace dell_fsd_project_1
 
                 Console.WriteLine("Teacher information successfully updated.");
                 teacher.PrintTeacher();
+                updateTxtFile(teacherList);
             }
             else
             {
@@ -175,5 +175,32 @@ namespace dell_fsd_project_1
             }
         }
         
+        public static void updateTxtFile(TeacherList teacherList)
+        {
+
+            string path = "App_Data/teachers.txt";
+
+            if (File.Exists(path))
+            {
+                using (StreamWriter sw = new StreamWriter(path, false))
+                {
+                    sw.WriteLine("{\n\"teachers\": [\n");
+                    foreach(Teacher teacher in teacherList.Teachers) {
+                        sw.WriteLine("{\n");
+                        sw.WriteLine("\"id\": " + teacher.Id + ",\n");
+                        sw.WriteLine("\"firstName\": \"" + teacher.FirstName + "\",\n");
+                        sw.WriteLine("lastName: \"" + teacher.LastName + "\",\n");
+                        sw.WriteLine("class: \"" + teacher.Class + "\",\n");
+                        sw.WriteLine("section: \"" + teacher.Section + "\",\n");
+                        sw.WriteLine("},\n");
+                    }
+                    sw.WriteLine("]\n}");
+                }
+             }
+            else
+            {
+                Console.WriteLine("File not found");
+            }
+        }
     }
 }
