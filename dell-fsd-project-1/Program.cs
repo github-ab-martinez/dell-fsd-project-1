@@ -28,11 +28,13 @@ namespace dell_fsd_project_1
 
         public static void RunApp()
         {
-            Teacher classTeacher = new Teacher("Marti", "Martinez", "Class 1", "Section 1");
-            Teacher classTeacher2 = new Teacher("Isaac", "Newton", "Physics", "Section 2");
+            Teacher classTeacher = new Teacher("Isaac", "Newton", "Intro to Physics", "Section 1");
+            Teacher classTeacher2 = new Teacher("Galileo", "Galilei", "Astronomy", "Section 1");
+            Teacher classTeacher3 = new Teacher("Albert", "Einstein", "Advanced Physics", "Section 2");
+
 
             TeacherList teachers = new TeacherList();
-            teachers.Teachers = new List<Teacher> { classTeacher, classTeacher2 };
+            teachers.Teachers = new List<Teacher> { classTeacher, classTeacher2, classTeacher3 };
 
             updateTxtFile(teachers);
 
